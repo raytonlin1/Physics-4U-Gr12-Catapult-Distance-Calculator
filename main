@@ -1,0 +1,36 @@
+import math
+
+x1=float(input("Enter the ground horizontal distance: "))
+y1=float(input("Enter the ground height (arm to floor): "))
+
+x2=float(input("Enter the second horizontal distance: "))
+y2=float(input("Enter the second height: "))
+
+'''
+x1=1
+y1=1
+
+x2=2
+y2=2
+'''
+
+angle=math.atan((x2*x2*y1-x1*x1*y2)/(x1*x1*x2-x2*x2*x1))
+print("\nThe angle is",math.degrees(angle),"degrees.")
+angle=-angle
+
+
+v=x2/math.cos(angle)*(4.905/(x2*math.tan(-angle)+y2))**0.5
+print("The velocity is",v,"metres per second.")
+print("The horizontal velocity is",v*math.cos(angle),"metres per second.")
+print("The vertical velocity is",v*math.sin(angle),"metres per second.")
+
+h=float(input("Enter the height of the desk: "))
+
+a=4.905
+b=v*math.sin(angle)
+c=-y1-h
+d = (b**2) - (4*a*c)
+t=(-b+math.sqrt(d))/(2*a)
+print(t,a,b,c,d,"\n")
+
+print("The final horizontal distance from this height is",v*math.cos(angle)*t,"metres.")
